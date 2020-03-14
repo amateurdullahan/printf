@@ -9,5 +9,28 @@
 
 int _printf(const char *format)
 {
+  int c;
+  int return = 0;
 
+  for (c = 0; c < _strlen(format); c++)
+    {
+      if (format[c] == '%')
+	{
+	  format[c]++;
+	  if (format[c] == 'c')
+	    {
+	      format[c]++;
+	      /* IOTA FUNC HERE */
+	    }
+	  if (format[c] == 's')
+	    {
+	      continue;
+	    }
+	}
+      else
+	{
+	  write (1, &format, 1);
+	  return++;
+	}
+    }
 }
