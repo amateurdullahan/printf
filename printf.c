@@ -9,19 +9,42 @@
 
 int _printf(const char *format, ...)
 {
-  int c;
-  int len = 0;  
-  int ret = 0;
+int c, d, f;
+char *s;
+va_list vat;
+f = 0;
 
-  len = _strlen(format); 
-  for (c = 0; format[c]; c++)
-    {
-      _putchar(format[c]);
-    }
-
-  ret = c;
-  return (ret);
+ va_start (vat, format);
+ while (format[f] != '\0')
+   {
+     if (format[f] != '%')
+       {
+	 _putchar(format[f]);
+	 f++;
+       }
+     switch (*format)
+       {
+       case 'c':
+	 c = va_arg(vat, int);
+	 _putchar(c);
+	 break;
+       case 's':
+	 s = va_arg(vat, char *);
+	 for (d = 0; s[d] != '\0'; d++)
+	   _putchar(s[d]);
+	 break;
+       case '%':
+	 _putchar('%');
+	 break;
+       }
+   }
+ va_end(vat);
 }
+
+
+
+
+
 
 /**
  * _strlen - determines length of string
