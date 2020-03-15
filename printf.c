@@ -1,5 +1,4 @@
 #include "holberton.h"
-#include <stdio.h>
 
 /**
  * _printf - basic func to print a string of characters
@@ -10,13 +9,17 @@
 
 int _printf(const char *format, ...)
 {
+  int c;
   int len = 0;  
   int ret = 0;
 
   len = _strlen(format); 
-  write (1, format, len);
+  for (c = 0; format[c]; c++)
+    {
+      _putchar(format[c]);
+    }
 
-  ret = len;
+  ret = c;
   return (ret);
 }
 
@@ -33,4 +36,9 @@ int len;
 for (len = 0; c[len]; len++)
 ;
 return (len);
+}
+
+int _putchar(char c)
+{
+  return (write(1, &c, 1));
 }
