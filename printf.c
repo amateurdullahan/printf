@@ -1,4 +1,7 @@
 #include "holberton.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
 
 /**
  * _printf - basic func to print a string of characters
@@ -22,6 +25,9 @@ f = 0;
 	 _putchar(format[f]);
 	 f++;
        }
+     else
+       {
+       f++;
      switch (*format)
        {
        case 'c':
@@ -36,6 +42,7 @@ f = 0;
        case '%':
 	 _putchar('%');
 	 break;
+       }
        }
    }
  va_end(vat);
