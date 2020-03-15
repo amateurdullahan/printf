@@ -7,32 +7,19 @@
  * Return: number of characters printed
  */
 
-int _printf(const char *format)
+int _printf(const char *format, ...)
 {
-  int c;
-  int return = 0;
+  int count, len;
+  int ret = 0;
 
-  for (c = 0; c < _strlen(format); c++)
+  len = _strlen(format);
+
+  for (count = 0; count < len; count++)
     {
-      if (format[c] == '%')
-	{
-	  format[c]++;
-	  if (format[c] == 'c')
-	    {
-	      format[c]++;
-	      /* IOTA FUNC HERE */
-	    }
-	  if (format[c] == 's')
-	    {
-	      continue;
-	    }
-	}
-      else
-	{
-	  write (1, &format, 1);
-	  return++;
-	}
+	  write (1, &format, len);
+	  ret++;
     }
+  return (ret);
 }
 
 /**
@@ -42,7 +29,7 @@ int _printf(const char *format)
  * Return: length of string
 */
 
-int _strlen(char *c) 
+int _strlen(const char *c) 
 {
 int len;
 for (len = 0; c[len]; len++)
