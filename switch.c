@@ -29,7 +29,8 @@ int print_conv(const char *str, va_list arg)
       count++;
       return (count);
 
-    case ('d' || 'i'):
+    case ('d'):
+      s = malloc(sizeof(str));
       s = _itoa(va_arg(arg, int), s, 10);
       _puts(s);
       count += _strlen(s);

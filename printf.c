@@ -41,6 +41,6 @@ int _printf(const char *format, ...)
       format++;    
     }
   va_end(vat);
-  printf("%d\n", len);
+
   return (len);
 }
