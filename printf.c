@@ -50,11 +50,12 @@ int _printf(const char *format, ...)
 		 	len++;
 		 	break;
 
-		case ('d' || 'i'):
-			s = _itoa(va_arg(vat, int), s, 10);
-			_puts(s);
-			len += _strlen(s);
-			break;
+		case ('d'):
+		  s = malloc(sizeof(format));
+		  s = _itoa(va_arg(vat, int), s, 10);
+		  _puts(s);
+		  len += _strlen(s);
+		  break;
 
 		default:
 			format--;
