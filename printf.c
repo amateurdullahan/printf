@@ -27,22 +27,26 @@ f = 0;
        }
      else
        {
-       f++;
-     switch (*format)
-       {
-       case 'c':
-	 c = va_arg(vat, int);
-	 _putchar(c);
-	 break;
-       case 's':
-	 s = va_arg(vat, char *);
-	 for (d = 0; s[d] != '\0'; d++)
-	   _putchar(s[d]);
-	 break;
-       case '%':
-	 _putchar('%');
-	 break;
-       }
+	 printf("im in the else\n");
+	 switch (*(format) + 1)
+	 {
+	   printf("im in the switch");
+	 case 'c':
+	   c = va_arg(vat, int);
+	   _putchar(c);
+	   break;
+	 case 's':
+	   s = va_arg(vat, char *);
+	   _puts(s);
+/* for (c = 0; s[c]; c++)
+	     _putchar(s[c]);*/
+	   break;
+	 case '%':
+	   _putchar('%');
+	   break;
+
+	   break;
+	 }
        }
    }
  va_end(vat);
@@ -71,4 +75,16 @@ return (len);
 int _putchar(char c)
 {
   return (write(1, &c, 1));
+}
+
+
+void _puts(char *str)
+{
+  int c = 0;
+
+  while(*(str + c) != '\0')
+    {
+      putchar(*(str + c));
+      c++;
+    }
 }

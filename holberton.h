@@ -14,4 +14,6 @@ int _abs(int a);
 char *_itoa(int value, char *buffer, int base);
 
 int _putchar(char c);
+
+void _puts(char *str);
 #endif /* HOLBERTON_H */
