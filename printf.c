@@ -1,44 +1,56 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdarg.h>
 #include "holberton.h"
+#include <unistd.h>
+
 
 /**
- * _printf - basic func to print a string of characters
- * @format: character string
- *
- * Return: number of characters printed
+ * _printf - custom printf
+ * @format: input string
+ * Return: total length of printed string
  */
-
 int _printf(const char *format, ...)
 {
-  int c;
-  int len = 0;  
-  int ret = 0;
+	char *s;
+	va_list vat;
+	int len, c;
 
-  len = _strlen(format); 
-  for (c = 0; format[c]; c++)
-    {
-      _putchar(format[c]);
-    }
+	va_start(vat, format);
+	while (*format != '\0')
+	{
+	if (*format != '%')
+	{
+		_putchar(*format);
+		format++;
+		len++;
+		continue;
+	}
+	format++;
+	if (*format == '\0')
+		break;
 
-  ret = c;
-  return (ret);
-}
-
-/**
- * _strlen - determines length of string
- * @c: string                                              
- *
- * Return: length of string
-*/
-
-int _strlen(const char *c) 
-{
-int len;
-for (len = 0; c[len]; len++)
-;
-return (len);
-}
-
-int _putchar(char c)
-{
-  return (write(1, &c, 1));
+	switch (*format)
+	{
+		case 's':
+			s = va_arg(vat, char *);
+			_puts(s);
+			len += _strlen(s);
+			break;
+		case 'c':
+			c = va_arg(vat, int);
+			_putchar(c);
+			len++;
+			break;
+		case '%':
+			_putchar('%');
+			len++;
+			break;
+		default:
+			break;
+	}
+	format++;
+	}
+	va_end(vat);
+	return (len);
 }
