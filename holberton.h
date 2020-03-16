@@ -18,5 +18,6 @@ int _putchar(char c);
 
 void _puts(char *str);
 
+int print_conv(const char *str, va_list arg);
 
 #endif /* HOLBERTON_H */
