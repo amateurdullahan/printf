@@ -3,7 +3,7 @@
 
 int _printf(const char *format, ...);
 
-int _strlen(const char *c);
+int _strlen(char *c);
 
 void _swap(char *x, char *y);
 
@@ -16,4 +16,5 @@ char *_itoa(int value, char *buffer, int base);
 int _putchar(char c);
 
 void _puts(char *str);
+
 #endif /* HOLBERTON_H */

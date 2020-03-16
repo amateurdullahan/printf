@@ -1,90 +1,56 @@
-#include "holberton.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include "holberton.h"
+#include <unistd.h>
+
 
 /**
- * _printf - basic func to print a string of characters
- * @format: character string
- *
- * Return: number of characters printed
+ * _printf - custom printf
+ * @format: input string
+ * Return: total length of printed string
  */
-
 int _printf(const char *format, ...)
 {
-int c, d, f;
-char *s;
-va_list vat;
-f = 0;
-
- va_start (vat, format);
- while (format[f] != '\0')
-   {
-     if (format[f] != '%')
-       {
-	 _putchar(format[f]);
-	 f++;
-       }
-     else
-       {
-	 printf("im in the else\n");
-	 switch (*(format) + 1)
-	 {
-	   printf("im in the switch");
-	 case 'c':
-	   c = va_arg(vat, int);
-	   _putchar(c);
-	   break;
-	 case 's':
-	   s = va_arg(vat, char *);
-	   _puts(s);
-/* for (c = 0; s[c]; c++)
-	     _putchar(s[c]);*/
-	   break;
-	 case '%':
-	   _putchar('%');
-	   break;
-
-	   break;
-	 }
-       }
-   }
- va_end(vat);
-}
-
-
-
-
-
-
-/**
- * _strlen - determines length of string
- * @c: string                                              
- *
- * Return: length of string
-*/
-
-int _strlen(const char *c) 
-{
-int len;
-for (len = 0; c[len]; len++)
-;
-return (len);
-}
-
-int _putchar(char c)
-{
-  return (write(1, &c, 1));
-}
-
-
-void _puts(char *str)
-{
-  int c = 0;
-
-  while(*(str + c) != '\0')
+  char *s;
+  va_list vat;
+  int len, c;
+  
+  va_start(vat, format);
+  while (*format != '\0')
     {
-      putchar(*(str + c));
-      c++;
+      if (*format != '%')
+	{
+	  _putchar(*format);
+	  format++;
+	  len++;
+	  continue;
+	}
+      format++;
+      if (*format == '\0')
+	break;
+      
+      switch (*format)
+	{
+	case 's':
+	  s = va_arg(vat, char *);
+	  _puts(s);
+	  len += _strlen(s);
+	  break;
+	case 'c':
+	  c = va_arg(vat, int);
+	  _putchar(c);
+	  len++;
+	  break;
+	case '%':
+	  _putchar('%');
+	  len++;
+	  break;
+	default:
+	  break;
+	}
+      format++;
     }
+  va_end(vat);
+  return (len);
 }

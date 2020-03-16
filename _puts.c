@@ -1,16 +1,19 @@
 #include "holberton.h"
 
 /**
- *
+ * _puts - Prints the string using _putchar (hax)
+ * @str:  Input string
+ * While the string does not equal endline
+ * Print string, then advance string
+ * After loop, finish with newline
+ * Result: The string printed!
  */
-
 void _puts(char *str)
 {
-  int c = 0;
-
-  while(*(str + c) != '\0')
-    {
-      _putchar(*(str + c));
-      c++;
-    }
+	while (*str != '\0')
+	{
+		_putchar(*str);
+		str++;
+	}
+	_putchar('\n');
 }
