@@ -15,6 +15,7 @@ int _printf(const char *format, ...)
   char *s;
   va_list vat;
   int len, c;
+  len = -1;
   
   va_start(vat, format);
   while (*format != '\0')
@@ -44,13 +45,16 @@ int _printf(const char *format, ...)
 	  break;
 	case '%':
 	  _putchar('%');
-	  len++;
 	  break;
 	default:
+	  format--;
+	  _putchar('%');
+	  len++;	  
 	  break;
 	}
       format++;
     }
   va_end(vat);
+  printf("%d\n", len);
   return (len);
 }
