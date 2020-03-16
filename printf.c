@@ -12,53 +12,58 @@
  */
 int _printf(const char *format, ...)
 {
- char *s;
- va_list vat;
- int len, c;
+	char *s, 
+	va_list vat;
+	int len, c, di;
 
- va_start(vat, format);
- while (*format != '\0')
-   {
-     if (*format != '%')
-       {
-	 _putchar(*format);
-	 format++;
-	 len++;
-	 continue;
-       }
-     format++;
-     if (*format == '\0')
-       break;
-     
-     
-     switch (*format)
-       {
+	va_start(vat, format);
+	while (*format != '\0')
+	{
+		if (*format != '%')
+		{
+			_putchar(*format);
+			format++;
+			len++;
+			continue;
+		}
+		format++;
+		if (*format == '\0')
+		break;
 
-       case 's':
-	 s = va_arg(vat, char *);
-	 _puts(s);
-	 len += _strlen(s);
-	 break;
+		switch (*format)
+		{
 
-       case 'c':
-	 c = va_arg(vat, int);
-	 _putchar(c);
-	 len++;
-	 break;
+		case 's':
+			s = va_arg(vat, char *);
+			_puts(s);
+			len += _strlen(s);
+			break;
 
-       case '%':
-	 _putchar('%');
-	 len++;
-	 break;
+		case 'c':
+			c = va_arg(vat, int);
+			_putchar(c);
+			len++;
+			break;
 
-       default:
-	 format--;
-	 _putchar('%');
-	 len++;
-	 break;
-       }
-     format++;
-   }
- va_end(vat);
- return (len);
+		case '%':
+			_putchar('%');
+		 	len++;
+		 	break;
+
+		case ('d' || 'i'):
+			s = _itoa(va_arg(vat, int), s, 10);
+			_puts(s);
+			len += _strlen(s);
+			break;
+
+		default:
+			format--;
+			_putchar('%');
+			len++;
+			break;
+		}
+		format++;
+	}
+	va_end(vat);
+	return (len);
 }
