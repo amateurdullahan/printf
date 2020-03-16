@@ -12,9 +12,9 @@
  */
 int _printf(const char *format, ...)
 {
-	char *s, 
+	char *s; 
 	va_list vat;
-	int len, c, di;
+	int len, c;
 
 	va_start(vat, format);
 	while (*format != '\0')
