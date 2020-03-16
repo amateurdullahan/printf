@@ -19,6 +19,11 @@ int print_conv(const char *str, va_list arg)
     {
     case 's':
       s = va_arg(arg, char *);
+      if (s == NULL)
+	{
+	  return (-1);
+	}
+      else
       _puts(s);
       count += _strlen(s);
       return (count);
@@ -29,12 +34,19 @@ int print_conv(const char *str, va_list arg)
       count++;
       return (count);
 
-    case ('d'):
+    case 'd':
       s = malloc(sizeof(str));
       s = _itoa(va_arg(arg, int), s, 10);
       _puts(s);
       count += _strlen(s);
-      break;
+      return (count);
+
+    case 'i':
+      s = malloc(sizeof(str));
+      s = _itoa(va_arg(arg, int), s, 10);
+      _puts(s);
+      count += _strlen(s);
+      return (count);
 
     case '%':
       str--;
