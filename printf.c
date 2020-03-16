@@ -1,74 +1,57 @@
-#include "holberton.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdarg.h>
+#include "holberton.h"
+#include <unistd.h>
+
 
 /**
- * _printf - basic func to print a string of characters
- * @format: character string
- *
- * Return: number of characters printed
+ * _printf - custom printf
+ * @format: input string
+ * Return: total length of printed string
  */
-
 int _printf(const char *format, ...)
 {
-int c, d, f;
-char *s;
-va_list vat;
-f = 0;
+	char *s;
+	va_list vat;
+	int len, c;
 
- va_start (vat, format);
- while (format[f] != '\0')
-   {
-     if (format[f] != '%')
-       {
-	 _putchar(format[f]);
-	 f++;
-       }
-     else
-       {
-       f++;
-     switch (*format)
-       {
-       case 'c':
-	 c = va_arg(vat, int);
-	 _putchar(c);
-	 break;
-       case 's':
-	 s = va_arg(vat, char *);
-	 for (d = 0; s[d] != '\0'; d++)
-	   _putchar(s[d]);
-	 break;
-       case '%':
-	 _putchar('%');
-	 break;
-       }
-       }
-   }
- va_end(vat);
-}
+	va_start(vat, format);
+	while (*format != '\0')
+	{
+	if (*format != '%')
+	{
+		_putchar(*format);
+		format++;
+		len++;
+		continue;
+	}
+	format++;
+	if (*format == '\0')
+		break;
 
 
-
-
-
-
-/**
- * _strlen - determines length of string
- * @c: string                                              
- *
- * Return: length of string
-*/
-
-int _strlen(const char *c) 
-{
-int len;
-for (len = 0; c[len]; len++)
-;
-return (len);
-}
-
-int _putchar(char c)
-{
-  return (write(1, &c, 1));
+	switch (*format)
+	{
+		case 's':
+			s = va_arg(vat, char *);
+			_puts(s);
+			len += _strlen(s);
+			break;
+		case 'c':
+			c = va_arg(vat, int);
+			_putchar(c);
+			len++;
+			break;
+		case '%':
+			_putchar('%');
+			len++;
+			break;
+		default:
+			break;
+	}
+	format++;
+	}
+	va_end(vat);
+	return (len);
 }
