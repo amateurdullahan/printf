@@ -30,6 +30,7 @@ int _printf(const char *format, ...)
 	if (*format == '\0')
 		break;
 
+
 	switch (*format)
 	{
 		case 's':
