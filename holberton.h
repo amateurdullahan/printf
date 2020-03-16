@@ -1,5 +1,6 @@
 #ifndef HOLBERTON_H
 #define HOLBERTON_H
+#include <stdarg.h>
 
 int _printf(const char *format, ...);
 
@@ -16,5 +17,6 @@ char *_itoa(int value, char *buffer, int base);
 int _putchar(char c);
 
 void _puts(char *str);
+
 
 #endif /* HOLBERTON_H */
