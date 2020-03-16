@@ -12,11 +12,15 @@
  */
 int _printf(const char *format, ...)
 {
-  char *s;
+  /* char *s;*/
   va_list vat;
-  int len, c;
+  int len;
   len = -1;
   
+  if (format == NULL)
+    {
+      return (0);
+    }
   va_start(vat, format);
   while (*format != '\0')
     {
@@ -27,32 +31,14 @@ int _printf(const char *format, ...)
 	  len++;
 	  continue;
 	}
-      format++;
-      if (*format == '\0')
+      else if (*format == '\0')
 	break;
-      
-      switch (*format)
+      else
 	{
-	case 's':
-	  s = va_arg(vat, char *);
-	  _puts(s);
-	  len += _strlen(s);
-	  break;
-	case 'c':
-	  c = va_arg(vat, int);
-	  _putchar(c);
-	  len++;
-	  break;
-	case '%':
-	  _putchar('%');
-	  break;
-	default:
-	  format--;
-	  _putchar('%');
-	  len++;	  
-	  break;
+	len += print_conv(format, vat);
+	format++;
 	}
-      format++;
+      format++;    
     }
   va_end(vat);
   printf("%d\n", len);
