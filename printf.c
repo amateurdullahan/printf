@@ -12,14 +12,13 @@
  */
 int _printf(const char *format, ...)
 {
-  /* char *s;*/
   va_list vat;
   int len;
-  len = -1;
+  len = 0;
   
   if (format == NULL)
     {
-      return (0);
+      return (-1);
     }
   va_start(vat, format);
   while (*format != '\0')
