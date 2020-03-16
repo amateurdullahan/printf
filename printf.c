@@ -12,6 +12,7 @@
  */
 int _printf(const char *format, ...)
 {
+
   va_list vat;
   int len;
   len = 0;

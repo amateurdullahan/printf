@@ -1,15 +1,15 @@
- # 0x11 - C - Printf
+# 0x11 - C - Printf
+
 Function/File | Short Description
 -------|------------
 [printf](printf.c) | Produces output to stdout.
 [holberton](holberton.h) | Header file for project, contains prototypes
-[swap](/functions/_swap.c) | Swaps two characters(numbers for itoa)
-[reverse](/functions/_reverse.c) | Reverses buffer
-[abs](_abs.c) | Returns absolute value of an integer
-[itoa](_itoa.c) | Converts input number to its corresponding C-string using the specified base.
 [strlen](_strlen.c) | Returns length of a string
-[]() | 
-[]() | 
+[puts](_puts.c) | Writes a string to stdout up to, but not including the null character. Appends newline. 
+[putchar](_putchar.c) | Writes an unsigned char to stdout
+[itoa](_itoa.c) | Converts an integer value to a null-terminatead string using the specified `base`, stored in the array given by `str`
+[abs](_abs.c) | Returns the absolute value of an integer
+[reverse](_reverse.c) | Reverses buffer [i..j]
 []() | 
 []() | 
 []() | 
