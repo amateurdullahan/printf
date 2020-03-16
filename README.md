@@ -1,4 +1,6 @@
- # 0x11 - C - Printf
+<p align="center"> 
+# 0x11 - C - Printf
+</p>
 Function/File | Short Description
 -------|------------
 [printf](printf.c) | Produces output to stdout.
