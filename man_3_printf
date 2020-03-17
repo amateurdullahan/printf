@@ -1,0 +1,59 @@
+.TH _PRINTF 3 "MARCH 17 2020" "0.7" "HOLBERTON PRINTF"
+.SH NAME
+_printf - Print data to standard output
+.SH SYNOPSIS
+.B _printf (
+.I char *FORMAT
+,
+.I [ARGUMENT]...
+)
+.SH DESCRIPTION
+Print the FORMAT to the standard output, after interpreting the arguements passed to it via '%'.
+.IReturn:
+The number of characters excluding the NULL-byte
+Print the ARGUEMENT(s) passed to FORMAT:
+.PP
+.B %c
+	Print the ASCII character stored in the variable.
+.PP
+.B %s
+	Print a string of characters.
+.PP
+.B %d
+	Convert string passed and print the decimal number.
+.PP
+.B %i
+	Convert string passed and print the integer number.
+.SH EXAMPLES
+.B Characters
+.PP
+_printf("_printf Character: [%c][%c][%c][%c][%c]\n", 'H', 'o', 'l', 'b', 'y');
+.PP
+.I Output:
+_printf Character: Holby
+.PP
+.B Strings
+.PP
+_printf("String: [%s]\n", "Hello, World!");
+.PP
+.I Output:
+String: Hello, World!
+.PP
+.B Decimals and Integers
+.PP
+_printf("Int Min: [%d]\n", INT_MIN);
+_printf("Int Max: [%i]\n", INT_MAX);
+.PP
+.I Output:
+Int Min: -2147483648
+Int Max: 2147483647
+.SH SEE ALSO
+.I printf(1), printf(3)
+.SH REPORTING BUGS
+No known bugs as of March 17 2020
+.PP
+Report bugs to:
+1711@holbertonschool.com
+1692@holbertonschool.com
+.SH AUTHOR
+Written by Dylan Carey and Corbin Enterline.
