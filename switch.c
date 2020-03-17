@@ -2,7 +2,7 @@
 #include <stdarg.h>
 #include <stdlib.h>
 #include <stdio.h>
-
+#include <limits.h>
 
 /**
  * print_conv - takes string and uses correct conversion
@@ -15,7 +15,7 @@
 int print_conv(const char *str, va_list arg)
 {
 	int count, c;
-	char *s = malloc(sizeof(str));
+	char *s = NULL;
 
 	count = 0;
 	str++;
