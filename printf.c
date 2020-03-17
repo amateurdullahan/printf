@@ -13,34 +13,29 @@
 int _printf(const char *format, ...)
 {
 
-  va_list vat;
-  int len;
-  len = 0;
-  
-  if (format == NULL)
-    {
-      return (-1);
-    }
-  va_start(vat, format);
-  while (*format != '\0')
-    {
-      if (*format != '%')
-	{
-	  _putchar(*format);
-	  format++;
-	  len++;
-	  continue;
-	}
-      else if (*format == '\0')
-	break;
-      else
-	{
-	len += print_conv(format, vat);
-	format++;
-	}
-      format++;    
-    }
-  va_end(vat);
+	va_list vat;
+	int len;
 
-  return (len);
+	len = 0;
+
+	if (format == NULL || vat == NULL)
+		return (-1);
+	va_start(vat, format);
+	while (*format != '\0')
+	{
+		if (*format != '%')
+		{
+			_putchar(*format);
+			format++;
+			len++;
+			continue;
+		}
+		else if (*format == '\0')
+			break;
+		len += print_conv(format, vat);
+		format++;
+		format++;
+	}
+	va_end(vat);
+	return (len);
 }
