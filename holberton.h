@@ -22,4 +22,5 @@ int print_conv(const char *str, va_list arg);
 
 int print_s(const char *str, va_list arg);
 
+int print_b(va_list arg);
 #endif /* HOLBERTON_H */
