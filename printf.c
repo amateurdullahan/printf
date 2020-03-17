@@ -14,9 +14,9 @@ int _printf(const char *format, ...)
 {
 
 	va_list vat;
-	int len;
+	int len, i;
 
-	len = 0;
+	len = i = 0;
 
 	if (format == NULL || vat == NULL)
 		return (-1);
@@ -32,12 +32,31 @@ int _printf(const char *format, ...)
 		}
 		else if (*format == '\0')
 			break;
-		while (*format == ' ')
-			format++;
+		if (*format++ == ' ')
+		{
+			i++;
+			i += spacer(format, i);
+			for (; i > 0; i--)
+				format++;
+		}	
 		len += print_conv(format, vat);
 		format++;
 		format++;
 	}
 	va_end(vat);
 	return (len);
+}
+
+int spacer(const char *s, int n)
+{
+	int i = 0;
+
+	while (*s)
+	{
+		if (s[n + 1] != ' ')
+			return (i);
+		n++;
+		i++;
+	}
+	return (0);
 }
