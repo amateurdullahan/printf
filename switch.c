@@ -43,8 +43,8 @@ int print_conv(const char *str, va_list arg)
 			_putchar('%');
 			count++;
 			return (count);
-	        case 'b':
-		  return (print_b(arg)); 		  
+		case 'b':
+			return (print_b(arg));
 		default:
 			_putchar('%');
 			_putchar(*str);
@@ -87,32 +87,33 @@ int print_s(const char *str, va_list arg)
 
 int print_b(va_list arg)
 {
-  unsigned int c, count, Num, binary, arr[32];
-  c = 0, count = 0;
-  Num = va_arg(arg, int);
+	unsigned int c, count, Num, binary, arr[32];
 
-  if (Num < 1)
-    {
-      _putchar(48);
-      count++;
-      return (count);
-    }
-  else
-    {
-      while (Num > 0)
+	c = 0, count = 0;
+	Num = va_arg(arg, int);
+
+	if (Num < 1)
 	{
-	  binary = Num % 2;
-	  Num /= 2;
-	  arr[count] = binary;
-	  count++;
+		_putchar(48);
+		count++;
+		return (count);
 	}
-      c = count - 1;
-      while (c > 0)
+	else
 	{
-	  _putchar('0' + arr[c]);
-	  c--;
+		while (Num > 0)
+		{
+			binary = Num % 2;
+			Num /= 2;
+			arr[count] = binary;
+			count++;
+		}
+		c = count - 1;
+		while (c > 0)
+		{
+			_putchar('0' + arr[c]);
+			c--;
+		}
+		_putchar('0' + arr[c]);
 	}
-      _putchar('0' + arr[c]);
-    }
-  return (count);
+	return (count);
 }
