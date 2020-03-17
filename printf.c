@@ -32,6 +32,8 @@ int _printf(const char *format, ...)
 		}
 		else if (*format == '\0')
 			break;
+		while (*format == ' ')
+			format++;
 		len += print_conv(format, vat);
 		format++;
 		format++;
