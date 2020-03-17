@@ -68,7 +68,7 @@ int print_s(const char *str, va_list arg)
 	if (s == NULL)
 	{
 		free(s);
-		return (-1);
+		return (0);
 	}
 	else
 	{
