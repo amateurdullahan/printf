@@ -17,7 +17,7 @@ int print_conv(const char *str, va_list arg)
 	int count, c;
 	char *s = malloc(sizeof(str));
 
-	count = c = 0;
+	count = 0;
 	str++;
 	switch (*str)
 	{
@@ -43,6 +43,8 @@ int print_conv(const char *str, va_list arg)
 			_putchar('%');
 			count++;
 			return (count);
+	        case 'b':
+		  return (print_b(arg)); 		  
 		default:
 			_putchar('%');
 			_putchar(*str);
@@ -74,4 +76,43 @@ int print_s(const char *str, va_list arg)
 	count = _strlen(s);
 	}
 	return (count);
+}
+
+/**
+ * print_b - print a binary number
+ * @arg: argument passed contating the number to convert
+ *
+ * Return: number of characters printed
+ */
+
+int print_b(va_list arg)
+{
+  unsigned int c, count, Num, binary, arr[32];
+  c = 0, count = 0;
+  Num = va_arg(arg, int);
+
+  if (Num < 1)
+    {
+      _putchar(48);
+      count++;
+      return (count);
+    }
+  else
+    {
+      while (Num > 0)
+	{
+	  binary = Num % 2;
+	  Num /= 2;
+	  arr[count] = binary;
+	  count++;
+	}
+      c = count - 1;
+      while (c > 0)
+	{
+	  _putchar('0' + arr[c]);
+	  c--;
+	}
+      _putchar('0' + arr[c]);
+    }
+  return (count);
 }
