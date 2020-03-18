@@ -24,6 +24,4 @@ int print_s(const char *str, va_list arg);
 
 int print_b(va_list arg);
 
-int spacer(const char *s, int n);
-
 #endif /* HOLBERTON_H */
