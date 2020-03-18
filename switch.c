@@ -15,9 +15,8 @@
 int print_conv(const char *str, va_list arg)
 {
 	int count, c;
-	char *s = malloc(sizeof(str));
 
-	count = 0;
+	count = c = 0;
 	str++;
 	switch (*str)
 	{
@@ -29,15 +28,9 @@ int print_conv(const char *str, va_list arg)
 			count++;
 			return (count);
 		case 'd':
-			s = _itoa(va_arg(arg, int), s, 10);
-			_puts(s);
-			count += _strlen(s);
-			return (count);
+			return (print_di(str, arg));
 		case 'i':
-			s = _itoa(va_arg(arg, int), s, 10);
-			_puts(s);
-			count += _strlen(s);
-			return (count);
+			return (print_di(str, arg));
 		case '%':
 			str--;
 			_putchar('%');
@@ -53,6 +46,32 @@ int print_conv(const char *str, va_list arg)
 	}
 }
 /**
+ * print_di - prints integer value in base 10
+ * @str: input string
+ * @arg: input argument from list
+ * prints result of itoa in base 10
+ * Return: length of string
+ */
+int print_di(const char *str, va_list arg)
+{
+	char *s = malloc(sizeof(str) * sizeof(arg));
+	int count;
+
+	s = _itoa(va_arg(arg, int), s, 10);
+	if (s == NULL)
+	{
+		free(s);
+		return (0);
+	}
+	else
+	{
+		_puts(s);
+		count += _strlen(s);
+	}
+	free(s);
+	return (count);
+}
+/**
  * print_s - prints string after conversion specifier
  * @str: input string
  * @arg: input argument from list
@@ -61,7 +80,7 @@ int print_conv(const char *str, va_list arg)
  */
 int print_s(const char *str, va_list arg)
 {
-	char *s = malloc(sizeof(str));
+	char *s = malloc(sizeof(str) * sizeof(arg));
 	int count;
 
 	s = va_arg(arg, char *);
