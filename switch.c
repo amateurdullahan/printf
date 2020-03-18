@@ -15,7 +15,7 @@
 int print_conv(const char *str, va_list arg)
 {
 	int count, c;
-	char *s;
+	char *s = malloc(sizeof(str));
 
 	count = 0;
 	str++;
