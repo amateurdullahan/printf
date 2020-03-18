@@ -54,9 +54,13 @@ int print_conv(const char *str, va_list arg)
  */
 int print_di(const char *str, va_list arg)
 {
-	char *s = malloc(sizeof(str));
-	int count = 0;
+	char *s;
+	int c, count;
 
+	count = c = 0;
+	c = _strlen(va_arg(arg, int));
+	c += _strlen(str);
+	s = malloc(sizeof(c));
 	s = _itoa(va_arg(arg, int), s, 10);
 	if (s == NULL)
 	{
