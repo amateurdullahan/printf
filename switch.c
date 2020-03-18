@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-
 /**
  * print_conv - takes string and uses correct conversion
  * @str: input string
@@ -14,9 +13,9 @@
 
 int print_conv(const char *str, va_list arg)
 {
-	int count, c;
+	int count = 0;
+	int c = 0;
 
-	count = c = 0;
 	str++;
 	switch (*str)
 	{
@@ -55,7 +54,7 @@ int print_conv(const char *str, va_list arg)
 int print_di(const char *str, va_list arg)
 {
 	char *s = malloc(sizeof(str) * sizeof(arg));
-	int count;
+	int count = 0;
 
 	s = _itoa(va_arg(arg, int), s, 10);
 	if (s == NULL)
@@ -81,7 +80,7 @@ int print_di(const char *str, va_list arg)
 int print_s(const char *str, va_list arg)
 {
 	char *s = malloc(sizeof(str) * sizeof(arg));
-	int count;
+	int count = 0;
 
 	s = va_arg(arg, char *);
 	if (s == NULL)
