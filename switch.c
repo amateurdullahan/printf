@@ -13,9 +13,9 @@
 
 int print_conv(const char *str, va_list arg)
 {
-	int count, c;
+	int count = 0;
+	int c = 0;
 
-	count = c = 0;
 	str++;
 	switch (*str)
 	{
