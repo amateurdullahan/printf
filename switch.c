@@ -13,63 +13,45 @@
 
 int print_conv(const char *str, va_list arg)
 {
-	int count = 0;
-	int c = 0;
+  int count, c;
+  char *s = malloc(sizeof(str));
 
-	str++;
-	switch (*str)
-	{
-		case 's':
-			return (print_s(str, arg));
-		case 'c':
-			c = va_arg(arg, int);
-			_putchar(c);
-			count++;
-			return (count);
-		case 'd':
-			return (print_di(str, arg));
-		case 'i':
-			return (print_di(str, arg));
-		case '%':
-			str--;
-			_putchar('%');
-			count++;
-			return (count);
-		case 'b':
-			return (print_b(arg));
-		default:
-			_putchar('%');
-			_putchar(*str);
-			count = 2;
-			return (count);
-	}
+  count = 0;
+  str++;
+  switch (*str)
+    {
+    case 's':
+      return (print_s(str, arg));
+    case 'c':
+      c = va_arg(arg, int);
+      _putchar(c);
+      count++;
+      return (count);
+    case 'd':
+      s = _itoa(va_arg(arg, int), s, 10);
+      _puts(s);
+      count += _strlen(s);
+      return (count);
+    case 'i':
+      s = _itoa(va_arg(arg, int), s, 10);
+      _puts(s);
+      count += _strlen(s);
+      return (count);
+    case '%':
+      str--;
+      _putchar('%');
+      count++;
+      return (count);
+    case 'b':
+      return (print_b(arg));
+    default:
+      _putchar('%');
+      _putchar(*str);
+      count = 2;
+      return (count);
+    }
 }
-/**
- * print_di - prints integer value in base 10
- * @str: input string
- * @arg: input argument from list
- * prints result of itoa in base 10
- * Return: length of string
- */
-int print_di(const char *str, va_list arg)
-{
-	char *s = malloc(sizeof(str) * sizeof(arg));
-	int count = 0;
 
-	s = _itoa(va_arg(arg, int), s, 10);
-	if (s == NULL)
-	{
-		free(s);
-		return (0);
-	}
-	else
-	{
-		_puts(s);
-		count += _strlen(s);
-	}
-	free(s);
-	return (count);
-}
 /**
  * print_s - prints string after conversion specifier
  * @str: input string
