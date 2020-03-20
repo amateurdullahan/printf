@@ -30,8 +30,10 @@ int print_rot13(va_list arg)
 	      _putchar(rot13[d]);
 	      break;
 	    }
-	  else
+	  if (j = 51)
+	    {
 	    _putchar(s[c]);
+	    }
 	}
     }
 }
