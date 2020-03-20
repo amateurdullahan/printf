@@ -17,40 +17,42 @@ int print_conv(const char *str, va_list arg)
 	int count, c;
 	char *s = malloc(sizeof(str));
 
-	count = 0;
-	str++;
-	switch (*str)
-	{
-		case 's':
-			return (print_s(str, arg));
-		case 'c':
-			c = va_arg(arg, int);
-			_putchar(c);
-			count++;
-			return (count);
-		case 'd':
-			s = _itoa(va_arg(arg, int), s, 10);
-			_puts(s);
-			count += _strlen(s);
-			return (count);
-		case 'i':
-			s = _itoa(va_arg(arg, int), s, 10);
-			_puts(s);
-			count += _strlen(s);
-			return (count);
-		case '%':
-			str--;
-			_putchar('%');
-			count++;
-			return (count);
-		case 'b':
-			return (print_b(arg));
-		default:
-			_putchar('%');
-			_putchar(*str);
-			count = 2;
-			return (count);
-	}
+  count = 0;
+  str++;
+  switch (*str)
+    {
+    case 's':
+      return (print_s(str, arg));
+    case 'c':
+      c = va_arg(arg, int);
+      _putchar(c);
+      count++;
+      return (count);
+    case 'd':
+      s = _itoa(va_arg(arg, int), s, 10);
+      _puts(s);
+      count += _strlen(s);
+      return (count);
+    case 'i':
+      s = _itoa(va_arg(arg, int), s, 10);
+      _puts(s);
+      count += _strlen(s);
+      return (count);
+    case '%':
+      str--;
+      _putchar('%');
+      count++;
+      return (count);
+    case 'b':
+      return (print_b(arg));
+    case 'r':
+      return (_rev(arg));
+    default:
+      _putchar('%');
+      _putchar(*str);
+      count = 2;
+      return (count);
+    }
 }
 /**
  * print_s - prints string after conversion specifier
@@ -116,4 +118,30 @@ int print_b(va_list arg)
 		_putchar('0' + arr[c]);
 	}
 	return (count);
+}
+
+int _rev(va_list arg)
+{
+int count = 0;
+int loop;  
+char *s = va_arg(arg, char*);
+
+for (loop = 0; s[loop]; loop++)
+;
+
+while (loop >= 0)
+{
+if (s == NULL)
+{
+_puts("(null)");
+count += 6;
+}
+else
+{
+_putchar(s[loop]);
+loop--;
+count++;
+}
+}
+return (count);
 }
